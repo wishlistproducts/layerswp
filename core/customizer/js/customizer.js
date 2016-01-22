@@ -148,11 +148,29 @@
 			$('.customize-controls-close').addClass('layers-tooltip layers-tooltip-left').prepend( $('.layers-tooltip-text-close') );
 			$('.control-panel-back').addClass('layers-tooltip layers-tooltip-left').prepend( $('.layers-tooltip-text-back') );
 			
+			// Move the Layers customizer onboarding to correct place - no hook available.
+			$('body').append( $('#layers-customizer-onboarding') );
+			$('#layers-customizer-onboarding').css({ 'display':'block', 'visibility':'visible' });
+			
 			// Delay showing of main nav with hoverIntent
 			$( 'ul.layers-customizer-nav > li' ).hoverIntent(
 				function() { $( this ).addClass( 'layers-hover' ); },
 				function() { $( this ).removeClass( 'layers-hover' ); }
 			);
+			
+			if ( '#layers-get-started' == location.hash ) {
+				$('#layers-customizer-onboarding').removeClass('layers-onboarding-hide');
+			}
+
+			$(document).on( 'click', '.layers-customizer-onboarding-hide', function(){
+				$('#layers-customizer-onboarding').addClass('layers-onboarding-hide');
+				$('.layers-customizer-notification').removeClass('layers-notification-hide');
+			});
+
+			$(document).on( 'click', '.layers-customizer-notification', function(){
+				$('#layers-customizer-onboarding').removeClass('layers-onboarding-hide');
+				$('.layers-customizer-notification').addClass('layers-notification-hide');
+			});
 
 			/**
 			 * 4 - Better history states in customizer

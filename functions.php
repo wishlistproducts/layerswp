@@ -425,6 +425,16 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				array(),
 				LAYERS_VERSION
 			);
+			
+			/**
+			 * Admin Dashboard (only)
+			 */
+			wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-admin',
+				get_template_directory_uri() . '/core/assets/layers-admin.css',
+				array(),
+				LAYERS_VERSION
+			);
 		}
 		else {
 

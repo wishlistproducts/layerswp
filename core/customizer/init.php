@@ -78,6 +78,9 @@ class Layers_Customizer {
 			// Render layers customizer menu
 			add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_customizer_menu' ) );
 			
+			// Render customizer onboarding.
+			add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_onboarding' ) );
+			
 			// Advanced Active Callback functionality - disabled
 			add_filter( 'customize_control_active', array( $this, 'customize_active_controls' ), 10, 2 );
 		}
@@ -191,7 +194,9 @@ class Layers_Customizer {
 
 			<ul class="layers-customizer-nav">
 				<li>
-					<span class="customize-controls-layers-button customize-controls-layers-button-dashboard-main" title="<?php esc_html( _e( 'Layers Dashboard' , 'layerswp' ) ) ?>" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>"></span>
+					<span class="customize-controls-layers-button customize-controls-layers-button-dashboard-main" title="<?php esc_html( _e( 'Layers Dashboard' , 'layerswp' ) ) ?>" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
+						<div class="layers-customizer-notification layers-notification-hide">1</div>
+					</span>
 					<ul>
 						<?php
 						// Construct the Layers Customizer Menu
@@ -237,6 +242,17 @@ class Layers_Customizer {
 				</li>
 			</ul>
 
+		</div>
+		<?php
+	}
+	
+	function render_onboarding() {
+		?>
+		<div id="layers-customizer-onboarding" class="layers-onboarding-hide" >
+			<a class="layers-customizer-onboarding-hide l_admin-button">Dismiss</a>
+			
+			<?php include( LAYERS_TEMPLATE_DIR . '/core/options-panel/partials/get-started.php' ) ?>
+			
 		</div>
 		<?php
 	}

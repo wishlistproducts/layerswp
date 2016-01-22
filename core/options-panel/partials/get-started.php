@@ -510,7 +510,7 @@ function render_onboarding_warnings() {
 							</p>
 						<?php } // if layers_get_builder_pages(); ?>
 
-						<?php $this->load_partial( 'preset-layouts' ); ?>
+						<?php //$this->load_partial( 'preset-layouts' ); ?>
 
 						<?php echo $form_elements->input( array(
 							'type' => 'hidden',

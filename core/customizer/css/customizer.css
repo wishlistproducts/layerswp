@@ -220,3 +220,61 @@ a.customize-controls-layers-button-preview .icon{
 .layers-tooltip.layers-tooltip-left .layers-tooltip-text:before{
 	left: 20px;
 }
+
+
+/*-----------------------*/
+/*- DROP MENU -----------*/
+#layers-customizer-onboarding{
+	display: none;
+	left: 50%;
+	top: 50%;
+	height: 580px;
+	margin: -380px 0 0 -545px;
+	position: absolute;
+	vertical-align: bottom;
+	font-family: 'Open Sans', sans-serif;
+	z-index: 1000000;
+	background: rgb(241, 241, 241);
+	color: #545454;
+	padding: 0px 10px 0px;
+	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 12px rgba(0, 0, 0, 0.05);
+	min-width: 480px;
+	min-height: 300px;
+	transition: .2s ease-in-out;
+}
+
+#layers-customizer-onboarding.layers-onboarding-hide{
+	/* top: -45%; */
+	/* left: 18%; */
+	transform: scale(.95);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.layers-customizer-notification{
+	background: #D82B2B;
+	width: 13px;
+	height: 13px;
+	position: absolute;
+	top: 4px;
+	right: -7px;
+	border-radius: 100px;
+	line-height: 13px;
+	color: white;
+	font-size: 10px;
+	font-weight: bold;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.14);
+	transition: .2s ease-in-out;
+}
+
+.layers-customizer-notification.layers-notification-hide {
+	transform: scale(0);
+	opacity: 0;
+}
+.layers-customizer-onboarding-hide{
+	position: absolute;
+	right: 100px;
+	top: 40px;
+}
