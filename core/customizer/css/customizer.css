@@ -258,14 +258,14 @@ a.customize-controls-layers-button-preview .icon{
 	width: 13px;
 	height: 13px;
 	position: absolute;
-	top: 4px;
-	right: -7px;
+	top: 7px;
+	right: 7px;
 	border-radius: 100px;
 	line-height: 13px;
 	color: white;
 	font-size: 10px;
 	font-weight: bold;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.14);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
 	transition: .2s ease-in-out;
 }
 
