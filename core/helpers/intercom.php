@@ -18,15 +18,43 @@ class Layers_Intercom {
 	function __construct(){
 
 		global $wp_customize;
-
-		if( '1' !== get_option( 'layers_enable_intercom' ) || isset( $wp_customize ) )
-			return;
-
+		
+		/**
+		 * Check if Intercom Messenger should be On/Off.
+		 */
+		
+		// If in customizer then simply don't load Intercom.
+		if ( isset( $wp_customize ) ) return;
+		
+		// Set main control var
+		$enable_intercom_messenger = TRUE;
+		
+		$enable_intercom_messenger_option = get_option( 'layers_enable_intercom' );
+		if ( '1' === $enable_intercom_messenger_option || '0' === $enable_intercom_messenger_option ) {
+			
+			// User has previously chosen Intercom ON/OFF option (probably during onboarding).
+			// Switch Intercom Messenger on/off based on their selection.
+			$enable_intercom_messenger = (bool) $enable_intercom_messenger_option;
+		}
+		else {
+			
+			// User has not specified to switch Intercom on or off yet.
+			// Switch Intercom Messenger on by default.
+			$enable_intercom_messenger = TRUE;
+		}
+		
+		// If set to `NOT $enable_intercom_messenger` then don't show the Intercom Messenger bubble.
+		if ( ! $enable_intercom_messenger ) {
+			add_action( 'admin_head', array( $this, 'hide_intercom_messenger' ) );
+		}
+		
+		/**
+		 * Load Intercom.
+		 */
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
 
 		add_action( 'customize_controls_print_footer_scripts', array( $this, 'intercom_js' ) );
 		add_action( 'admin_footer', array( $this, 'intercom_js' ) );
-
 	}
 
 	function admin_enqueue_scripts(){
@@ -131,6 +159,12 @@ class Layers_Intercom {
 
 		<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/<?php echo $this->app_id; ?>';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
 	<?php }
+	
+	function hide_intercom_messenger(){
+		?>
+		<style> #intercom-container { display: none !important; } </style>
+		<?php
+	}
 }
 
 /**
