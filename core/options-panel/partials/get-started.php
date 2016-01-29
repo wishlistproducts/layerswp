@@ -56,10 +56,10 @@ function render_onboarding_warnings() {
 
 		<div class="l_admin-onboard-controllers">
 			<div class="onboard-nav-dots l_admin-pull-left" id="layers-onboard-anchors"></div>
-			<a class="l_admin-button btn-link l_admin-pull-right" href="" id="layers-onboard-skip"><?php _e( 'Skip' , 'layerswp' ); ?></a>
+			<a class="button btn-link l_admin-pull-right" href="" id="layers-onboard-skip"><?php _e( 'Skip' , 'layerswp' ); ?></a>
 		</div>
 
-		<div class="l_admin-onboard-slider">
+		<div class="l_admin-onboard-slider l_admin-row">
 
 			<!-- Welcome -->
 			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-current">
@@ -72,10 +72,10 @@ function render_onboarding_warnings() {
 							</h3>
 							<div class="l_admin-excerpt">
 								<p>
-									<?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!' , 'layerswp' ); ?>
+									<?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true.' , 'layerswp' ); ?>
 								</p>
 								<p>
-									<?php _e( 'The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!' , 'layerswp' ); ?>
+									<?php _e( 'The following short steps are designed to show you how Layers works so that you can start creating amazing layouts.' , 'layerswp' ); ?>
 								</p>
 								<p>
 									<?php _e( 'Enjoy the ride!' , 'layerswp' ); ?>
@@ -93,7 +93,7 @@ function render_onboarding_warnings() {
 						<!-- Your helpful tips go here -->
 						<ul class="l_admin-help-list">
 							<li>
-								<?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" rel="nofollow">helpful documentation.</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
+								<?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" target="_blank" rel="nofollow">helpful documentation.</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
 							</li>
 							<li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , 'layerswp' ); ?></li>
 							<?php render_onboarding_warnings(); ?>
@@ -114,7 +114,7 @@ function render_onboarding_warnings() {
 								<?php _e( 'Let&rsquo;s do some quick setup' , 'layerswp' ); ?>
 							</h3>
 							<p class="l_admin-excerpt">
-								<?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ); ?>
+								<?php _e( 'Tell us a bit about your site so that we can give you the best website building experience possible.' , 'layerswp' ); ?>
 							</p>
 						</div>
 
@@ -131,6 +131,23 @@ function render_onboarding_warnings() {
 								'placeholder' => get_bloginfo( 'name' ),
 								'value' => get_bloginfo( 'name' ),
 								'class' => 'layers-text l_admin-large',
+							) );
+							?>
+						</div>
+
+						<div class="l_admin-form-item">
+							<label>
+								<?php _e( 'How would you describe your site?' , 'layerswp' ); ?>
+								<i class="fa fa-question-circle" data-tip="<?php _e( 'A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>"></i>
+							</label>
+							<?php
+							echo $form_elements->input( array(
+								'type' => 'text',
+								'name' => 'blogdescription',
+								'id' => 'blogdescription',
+								'placeholder' => get_bloginfo( 'description' ),
+								'value' => get_bloginfo( 'description' ),
+								'class' => 'layers-text l_admin-large'
 							) );
 							?>
 						</div>
@@ -167,23 +184,6 @@ function render_onboarding_warnings() {
 									'just-testing' => 'Just Testing',
 									'other' => 'Other'
 								),
-							) );
-							?>
-						</div>
-
-						<div class="l_admin-form-item">
-							<label>
-								<?php _e( 'How would you describe your site?' , 'layerswp' ); ?>
-								<i class="fa fa-question-circle" data-tip="<?php _e( 'A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>"></i>
-							</label>
-							<?php
-							echo $form_elements->input( array(
-								'type' => 'text',
-								'name' => 'blogdescription',
-								'id' => 'blogdescription',
-								'placeholder' => get_bloginfo( 'description' ),
-								'value' => get_bloginfo( 'description' ),
-								'class' => 'layers-text l_admin-large'
 							) );
 							?>
 						</div>
@@ -257,7 +257,7 @@ function render_onboarding_warnings() {
 							'value' => 'layers_onboarding_create_pages'
 						) ); ?>
 
-						<div class="layers-checkbox-wrapper l_admin-form-item">
+						<div class="l_admin-checkbox-wrapper l_admin-large l_admin-form-item">
 							<input id="layers-create-page-blog" name="create-page-blog" value="Blog" type="checkbox" checked="checked" />
 							<label for="layers-create-page-blog">
 								<?php _e( 'Blog Page', 'layerswp' ); ?>
@@ -298,7 +298,7 @@ function render_onboarding_warnings() {
 									<?php _e( 'Layers Messenger' , 'layerswp' ); ?>
 								</h3>
 								<p class="l_admin-excerpt">
-									<?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside Layers. We can help you make informed decisions about themes and extensions and point you in the right direction when you need support with your site and Layers.' , 'layerswp' ); ?>
+									<?php _e( 'Enable Layers Messenger to connect with the Layers team directly from inside Layers. By doing so we can provide you with support for your Layers site directly from your WordPress dashboard.' , 'layerswp' ); ?>
 								</p>
 							</div>
 							<?php echo $form_elements->input( array(
@@ -307,7 +307,7 @@ function render_onboarding_warnings() {
 								'id' => 'action',
 								'value' => 'layers_update_intercom'
 							) ); ?>
-							<div class="layers-checkbox-wrapper l_admin-form-item l_admin-push-bottom-medium">
+							<div class="l_admin-checkbox-wrapper l_admin-large l_admin-form-item l_admin-push-bottom-medium">
 								<input id="layers-enable-intercom-messenger" name="layers_intercom_messenger" type="checkbox" <?php if( '0' !== get_option( 'layers_enable_intercom' ) ){ echo 'checked="checked"'; }; ?> />
 								<label for="layers-enable-intercom-messenger"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
 							</div>
@@ -356,7 +356,7 @@ function render_onboarding_warnings() {
 						<!-- Your content goes here -->
 						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
 							<div class="l_admin-push-bottom-small">
-								<small class="l_admin-label label-secondary">
+								<small class="l_admin-label label-highlight">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
@@ -389,7 +389,7 @@ function render_onboarding_warnings() {
 						<!-- Your content goes here -->
 						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
 							<div class="l_admin-push-bottom-small">
-								<small class="l_admin-label label-secondary">
+								<small class="l_admin-label label-highlight">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
@@ -417,7 +417,7 @@ function render_onboarding_warnings() {
 						<!-- Your content goes here -->
 						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
 							<div class="l_admin-push-bottom-small">
-								<small class="l_admin-label label-secondary">
+								<small class="l_admin-label label-highlight">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
