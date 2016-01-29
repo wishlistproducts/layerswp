@@ -989,8 +989,14 @@ jQuery(function($) {
 	* 15 - Intercom checkbox
 	*/
 
-	$(document).on( 'change', '#layers-enable-intercom', function(e){
-
+	$(document).on( 'change', '#layers-enable-intercom-messenger', function(e){
+		
+		var $feedback_input = $('#layers-enable-intercom-feedback');
+		
+		if( $(this).prop('checked') && ! $feedback_input.prop('checked') ) {
+			$feedback_input.prop( 'checked', true );
+		}
+		
 		if( 'undefined' !== typeof Intercom ){
 			if( !$(this).prop('checked') ){
 				Intercom('shutdown');
@@ -999,6 +1005,10 @@ jQuery(function($) {
 			}
 		}
 
+	});
+	
+	$(document).on( 'change', '#layers-enable-intercom-feedback', function(e){
+		$('#layers-enable-intercom-messenger').prop( 'checked', false ).change();
 	});
 
 	/**

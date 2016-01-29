@@ -19,31 +19,51 @@ class Layers_Intercom {
 
 		global $wp_customize;
 		
+		// If in customizer then simply don't load Intercom.
+		if ( isset( $wp_customize ) ) return
+			
+		/**
+		 * Check if Intercom should be On/Off.
+		 */
+		
+		$enable_intercom_feedback = TRUE; // control var
+		
+		$enable_intercom_feedback_option = get_option( 'layers_enable_intercom_feedback' );
+		if ( '1' === $enable_intercom_feedback_option || '0' === $enable_intercom_feedback_option ) {
+			
+			// User has previously chosen Intercom ON/OFF option (probably dashboard).
+			// Switch Intercom on/off based on their selection.
+			$enable_intercom_feedback = (bool) $enable_intercom_feedback_option;
+			if ( ! $enable_intercom_feedback ) return false;
+		}
+		else {
+			
+			// User has not specified to switch Intercom on or off yet.
+			// Switch Intercom on by default.
+			$enable_intercom_feedback = TRUE;
+		}
+		
 		/**
 		 * Check if Intercom Messenger should be On/Off.
 		 */
 		
-		// If in customizer then simply don't load Intercom.
-		if ( isset( $wp_customize ) ) return;
-		
-		// Set main control var
-		$enable_intercom_messenger = TRUE;
+		$enable_intercom_messenger = TRUE; // control var
 		
 		$enable_intercom_messenger_option = get_option( 'layers_enable_intercom' );
 		if ( '1' === $enable_intercom_messenger_option || '0' === $enable_intercom_messenger_option ) {
 			
-			// User has previously chosen Intercom ON/OFF option (probably during onboarding).
+			// User has previously chosen Intercom Messnger ON/OFF option (probably during onboarding).
 			// Switch Intercom Messenger on/off based on their selection.
 			$enable_intercom_messenger = (bool) $enable_intercom_messenger_option;
 		}
 		else {
 			
-			// User has not specified to switch Intercom on or off yet.
+			// User has not specified to switch Intercom Messenger on or off yet.
 			// Switch Intercom Messenger on by default.
 			$enable_intercom_messenger = TRUE;
 		}
 		
-		// If set to `NOT $enable_intercom_messenger` then don't show the Intercom Messenger bubble.
+		// If set to `NOT $enable_intercom_messenger` then hide Intercom Messenger bubble.
 		if ( ! $enable_intercom_messenger ) {
 			add_action( 'admin_head', array( $this, 'hide_intercom_messenger' ) );
 		}

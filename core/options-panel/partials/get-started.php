@@ -308,10 +308,10 @@ function render_onboarding_warnings() {
 								'value' => 'layers_update_intercom'
 							) ); ?>
 							<div class="layers-checkbox-wrapper l_admin-form-item l_admin-push-bottom-medium">
-								<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '0' !== get_option( 'layers_enable_intercom' ) ){ echo 'checked="checked"'; }; ?> />
-								<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
+								<input id="layers-enable-intercom-messenger" name="layers_intercom_messenger" type="checkbox" <?php if( '0' !== get_option( 'layers_enable_intercom' ) ){ echo 'checked="checked"'; }; ?> />
+								<label for="layers-enable-intercom-messenger"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
 							</div>
-							<p data-show-if-selector="#layers-enable-intercom" data-show-if-value="true" class="l_admin-form-item">
+							<p data-show-if-selector="#layers-enable-intercom-messenger" data-show-if-value="true" class="l_admin-form-item">
 								<label><?php _e( 'Your Name' , 'layerswp' ); ?></label>
 								<?php
 									global $current_user;

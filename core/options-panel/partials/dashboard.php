@@ -188,17 +188,23 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 								</h4>
 							</div>
 							<div class="l_admin-media l_admin-image-left l_admin-content l_admin-no-push-bottom">
+								
 								<div class="l_admin-media-image l_admin-small">
 									<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/icon-layers-messenger.png" alt="<?php _e( 'Layers Messenger' , 'layerswp' ); ?>"/>
 								</div>
 								<div class="l_admin-media-body">
 									<div class="l_admin-excerpt">
 										<p>
-											<?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside your WordPress dashboard.' , 'layerswp' ); ?>
+											<?php _e( 'Enable the Layers Messenger and Layers Feeedback to connect with the Layers team directly from inside your WordPress dashboard.' , 'layerswp' ); ?>
 										</p>
+										<input name="layers-intercom-dashboard" type="hidden" value="1" />
 										<div class="l_admin-checkbox-wrapper l_admin-form-item">
-											<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '1' == get_option( 'layers_enable_intercom' )  ){ echo 'checked="checked"'; }; ?> />
-											<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
+											<input id="layers-enable-intercom-messenger" name="layers_intercom_messenger" type="checkbox" <?php if( '1' == get_option( 'layers_enable_intercom' )  ){ echo 'checked="checked"'; }; ?> />
+											<label for="layers-enable-intercom-messenger"><?php _e( 'Enable Messenger', 'layerswp' ); ?></label>
+										</div>
+										<div class="l_admin-checkbox-wrapper l_admin-form-item">
+											<input id="layers-enable-intercom-feedback" name="layers_intercom_feedback" type="checkbox" <?php if( '1' == get_option( 'layers_enable_intercom_feedback' )  ){ echo 'checked="checked"'; }; ?> />
+											<label for="layers-enable-intercom-feedback"><?php _e( 'Enable Feedback', 'layerswp' ); ?></label>
 										</div>
 									</div>
 								</div>

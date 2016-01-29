@@ -167,12 +167,16 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 				wp_update_user( $user ) ;
 			}
-			if( isset( $data[ 'layers_intercom' ] ) ){
-				update_option( 'layers_enable_intercom' , '1' );
-			} else{
-				update_option( 'layers_enable_intercom' , '0' );
+			
+			$value = isset( $data[ 'layers_intercom_messenger' ] ) ? '1' : '0';
+			update_option( 'layers_enable_intercom', $value );
+			
+			if ( isset( $data[ 'layers-intercom-dashboard' ] ) ) {
+				// Make sure origin of save ajax is dashboard, not onboarding.
+				$value = isset( $data[ 'layers_intercom_feedback' ] ) ? '1' : '0';
+				update_option( 'layers_enable_intercom_feedback', $value );
 			}
-
+			
 			die( json_encode( array( 'success' => true, 'message' => __( 'Intercom Updated' , 'layerswp' ) ) ) );
 
 		}

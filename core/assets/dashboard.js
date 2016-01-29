@@ -103,36 +103,34 @@ jQuery(function($) {
 	*/
 
 	$(document).on( 'click', '#layers-dashboard-page a[data-intercom-switch-action]', function(e){
-
+		
 		e.preventDefault();
 
 		//Hi Mom!
 		$that = $(this);
-
-		$container = $that.closest( '.l_admin-content-large' );
-
-		$form = $container.find( '.l_admin-content' );
+		
+		$form = $that.closest( '.l_admin-panel' );
 
 		$form_data = $form.find( 'input, textarea, select' ).serialize();
 
 		$action = $that.data( 'intercom-switch-action' );
 
 		$form_data = {
-					action: $action,
-					setup_step_key: $that.data( 'setup-step-key' ),
-					data: $form_data
-				};
+			action: $action,
+			setup_step_key: $that.data( 'setup-step-key' ),
+			data: $form_data
+		};
 
 		$form_data.layers_onboarding_update_nonce = layers_onboarding_params.update_option_nonce;
 
 		$.post(
-				ajaxurl,
-				$form_data,
-				function(data){
-					$results = $.parseJSON( data );
-					location.reload();
-				}
-			); // $.post
+			ajaxurl,
+			$form_data,
+			function(data){
+				$results = $.parseJSON( data );
+				location.reload();
+			}
+		);
 	});
 
 	/**
