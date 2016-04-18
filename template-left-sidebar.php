@@ -10,11 +10,11 @@
 
 get_header(); ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
+<div <?php post_class( 'container content-main clearfix' ); ?>>
     <div class="grid">
         <?php get_sidebar( 'left' ); ?>
 
-        <article <?php layers_center_column_class(); ?>>
+        <article id="post-<?php the_ID(); ?>" <?php layers_center_column_class(); ?>>
             <?php if( have_posts() ) : ?>
                 <?php while( have_posts() ) : the_post(); ?>
                     <?php get_template_part( 'partials/content', 'single' ); ?>

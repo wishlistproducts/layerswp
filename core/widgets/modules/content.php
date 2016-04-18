@@ -160,7 +160,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								<<?php echo $heading_type; ?> class="heading"><?php echo $widget['title'] ?></<?php echo $heading_type; ?>>
 							<?php } ?>
 							<?php if( '' != $this->check_and_return( $widget, 'excerpt' ) ) { ?>
-								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
+								<div class="excerpt"><?php echo layers_the_content( $widget[ 'excerpt' ] ); ?></div>
 							<?php } ?>
 						</div>
 					</div>
@@ -187,15 +187,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								}
 								// Set the background styling
 								if( !empty( $item['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
-								if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
-								if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
+								if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
+								if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
 
 								// Set column margin & padding
 								if ( !empty( $item['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item['design']['advanced']['margin'] ) );
 								if ( !empty( $item['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item['design']['advanced']['padding'] ) );
 
 								if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = $this->column_defaults[ 'width' ];
-								
+
 								// Set the button styling
 								if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
 									$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item, array( "#{$widget_id}-{$column_key} .button" ) );
@@ -309,12 +309,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'imagealign' );
 									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'fonts' , 'size' );
 									$column_inner_classes = implode( ' ', $column_inner_classes );
-									
+
 									/**
 									 * Get Heading Type - for SEO
 									 */
 									$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h3' ;
-									
+
 									/**
 									 * Button Size.
 									 */

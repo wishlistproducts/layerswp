@@ -137,7 +137,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ) );
-			
+
 			// Apply Button Styling.
 			if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
 				// Apply Layers Pro Button Styling.
@@ -250,7 +250,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								<h3 class="heading"><?php echo $widget['title'] ?></h3>
 							<?php } ?>
 							<?php if( '' != $this->check_and_return( $widget, 'excerpt' )  ) { ?>
-								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
+								<div class="excerpt"><?php echo layers_the_content( $widget[ 'excerpt' ] ); ?></div>
 							<?php } ?>
 						</div>
 					</div>
