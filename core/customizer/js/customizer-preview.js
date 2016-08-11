@@ -47,11 +47,11 @@
 				 *
 				 * Fix issue where font size is incorrectly displayed due to % font-size in an iframe in chrome
 				 */
-
-				$('body').css({ 'font-size': '1.5rem' });
+				/*var temp_rem = ( parseInt( $('body').css('font-size') ) / 10 ) + 'rem';
+				$('body').css({ 'font-size': temp_rem });
 				setTimeout(function() {
-					$('body').css({ 'font-size': '1.5rem' });
-				},3000 );
+					$('body').css({ 'font-size': temp_rem });
+				},3000 );*/
 
 				/**
 				 * 3 - Customizer UX Enhancements

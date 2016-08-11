@@ -112,6 +112,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 
+			wp_enqueue_script( LAYERS_THEME_SLUG . '-map-api' );
+
 			// Enqueue Masonry if need be
 			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . '-layers-masonry-js' );
@@ -379,7 +381,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 					<script type='text/javascript'>
 						jQuery(function($){
-							$('#<?php echo $widget_id; ?> .list-masonry .grid').layers_masonry({
+							$('#<?php echo $widget_id; ?>').find('.list-masonry .grid').layers_masonry({
 								itemSelector: '.layers-masonry-column',
 								layoutMode: 'masonry',
 								gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>,

@@ -269,12 +269,16 @@ object{
 		opacity: 0;
 	}
 	.list-masonry .grid{
-		margin-left: 0px;
-		margin-right: 0px;
+		margin-left: 10px;
+		margin-right: -10px;
 	}
 	.list-masonry .column{
 		margin-left: 0;
 		margin-right: 0;
+	}
+	.container-full-width.list-masonry .grid{
+		margin-left: 0px;
+		margin-right: 0px;
 	}
 
 /*-------------------------------*/
@@ -2392,6 +2396,15 @@ object{
 	.thumbnail .btn-collection{
 		margin: 20px 0 0;
 	}
+
+		/*-----------------------*/
+		/*- THUMBNAIL ALIGNMENT -*/
+		.thumbnail-body .article-title + .excerpt{
+			margin-top: 10px;
+		}
+		.thumbnail-body .article-title + .meta-info{
+			margin-top: 10px;
+		}
 
 
 /*-------------------------------*/

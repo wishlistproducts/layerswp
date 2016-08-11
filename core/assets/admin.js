@@ -117,7 +117,7 @@ jQuery(function($) {
 			// Fade in Remove button
 			$container.find('.layers-image-remove').fadeIn();
 
-			// Set attachment to the larege/medium size if they're defined
+			// Set attachment to the large/medium size if they're defined
 			if ( undefined !== attachment.sizes.medium )  {
 				$attachment = attachment.sizes.medium;
 			} else if( undefined !== attachment.sizes.large ) {
@@ -262,26 +262,32 @@ jQuery(function($) {
 
 	function layers_set_color_selector( $element ){
 
-		// Initialize the individual color-picker
-		$element.find('.layers-color-selector').wpColorPicker({
-			change: function(event, ui){
-				if( 'undefined' !== typeof event ){
+		$element.find('.layers-color-selector').each( function( index, element ) {
 
-					// Update the color input
-					$( event.target ).val( ui.color.toString() );
+			var $color_input = $(this);
 
-					// Debounce the color changes
-					layers_debounce_color_input( $( event.target ) );
-				}
-			},
-			clear: function(event) {
-				if( 'undefined' !== typeof event && 'click' === event.type ){
+			// Initialize the individual color-picker
+			$color_input.wpColorPicker({
+				change: function(event, ui){
+					if( 'undefined' !== typeof event ){
 
-					// Ping a chnage to the main input - the value will be ''.
-					$( event.target ).layers_trigger_change();
-				}
-			},
-			palettes: [ '#000000', '#FFFFFF', '#E2594E', '#F39C12', '#FFCD03', '#A2C661', '#009EEC', '#934F8C' ],
+						// Update the color input
+						$( event.target ).val( ui.color.toString() );
+
+						// Debounce the color changes
+						layers_debounce_color_input( $( event.target ) );
+					}
+				},
+				clear: function(event) {
+					if( 'undefined' !== typeof event && 'click' === event.type ){
+
+						// Ping a change to the main input - the value will be ''.
+						$( $color_input ).layers_trigger_change();
+					}
+				},
+				palettes: [ '#000000', '#FFFFFF', '#E2594E', '#F39C12', '#FFCD03', '#A2C661', '#009EEC', '#934F8C' ],
+			});
+
 		});
 	}
 
@@ -330,7 +336,7 @@ jQuery(function($) {
 		$tab_container = $tab_nav.siblings('.l_admin-tab-content');
 
 		// Show/Hide tabs
-		$tab_container.find( 'section.layers-tab-content' ).eq( $i ).addClass('l_admin-show').removeClass('l_admin-hide').slideDown().siblings( 'section.l_admin-tab-content' ).addClass('l_admin-hide').removeClass('l_admin-show').slideUp();
+		$tab_container.find( 'section.l_admin-tab-content' ).eq( $i ).addClass('l_admin-show').removeClass('l_admin-hide').slideDown().siblings( 'section.l_admin-tab-content' ).addClass('l_admin-hide').removeClass('l_admin-show').slideUp();
 	});
 
 	/**
@@ -478,7 +484,6 @@ jQuery(function($) {
 	*/
 
 	$.fn.layers_trigger_change = function() {
-
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
 	};
@@ -559,7 +564,12 @@ jQuery(function($) {
 			// Checkbox
 			$compare_element_value = ( $compare_element.is(':checked') ) ? 'true' : 'false' ;
 		}
-		else if ( $compare_element.hasClass( 'customize-control customize-control-layers-select-icons' ) ) {
+		else if ( 0 < $compare_element.closest( '.layers-select-icons' ).length && 0 < $compare_element.closest( 'fieldset.layers-post-meta' ).length ) {
+
+			// Select icons
+			$compare_element_value = $compare_element.parent().find('input:checked').val();
+
+		} else if ( $compare_element.hasClass( 'customize-control customize-control-layers-select-icons' ) ) {
 			// Select icons
 			$compare_element_value = $compare_element.find('input:checked').val();
 		}
@@ -568,7 +578,7 @@ jQuery(function($) {
 			$compare_element_value = $compare_element.val();
 		}
 
-		// Bail if there's no source element to refference.
+		// Bail if there's no source element to reference.
 		if ( 'undefined' === typeof( $compare_element_value ) || null === $compare_element_value ) {
 			layers_show_if_display( 'hide', $this_element );
 			return false;
@@ -767,7 +777,7 @@ jQuery(function($) {
 
 	}
 
-	// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
+	// Fix for 'clear formatting' button not working - invokes sending change to customizer prev
 	$(document).on( 'click', '.fr-bttn[data-cmd="removeFormat"]', function(){
 		var $editor = $(this).closest('.layers-form-item').find('.layers-rte');
 		_.defer( function(arguments) {
@@ -794,7 +804,7 @@ jQuery(function($) {
 			// editor. So if the newly_focussed_element is not a form field then
 			// we help by invisibly focussing Froala's hidden sister textarea which
 			// releases the resource heavy Froala editor and returns performance
-			// to it's nomral state.
+			// to it's normal state.
 			if (
 					! $newly_focussed_element.is('input') &&
 					! $newly_focussed_element.is('textarea') &&
@@ -949,7 +959,7 @@ jQuery(function($) {
 
 			// If the range-slider is moved and there's a placeholder set
 			// and the slider stops on the placeholder value then empty
-			// the number field so ntohing is applied.
+			// the number field so nothing is applied.
 			$number_field.val('');
 			$number_field.addClass( 'layers-range-disabled' );
 		}
@@ -1216,7 +1226,7 @@ jQuery(function($) {
 				$collection_heading.html( display_content );
 			});
 
-			// Ping an intial update at the start.
+			// Ping an initial update at the start.
 			$(element).find('select, input').eq(0).trigger('layers_init_linking');
 		});
 	}
@@ -1282,7 +1292,7 @@ jQuery(function($) {
 	});
 
 	function possibly_refresh_customizer( $widget ) {
-		
+
 		// Bail if old version of WP and SelectvieRfresh is not available yet.
 		if ( undefined == wp.customize.Widgets.data.selectiveRefreshableWidgets )
 			return false;

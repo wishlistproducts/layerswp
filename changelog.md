@@ -1,6 +1,24 @@
 # Layers Changelog
 
 =======
+##1.5.6
+### 11 Aug 2016
+
+* **Fix** - Fixed thumbnail body + title spacing. *DP*
+* **Fix** - Fixed "logged-in-as" styling (text directly below comment title). *DP*
+* **Fix** - Fixed 'Clear' not working on the Customizer Controls colors. *SOB*
+* **Fix** - Fixed erroneous map URL sitting in `functions.php`. *MP*
+* **Fix** - Fixed Complete Setup in dashboard. Thanks @easterncoder
+* **Fix** - Marketplace link overrides Layers Pages link on Dashboard tabs. Thanks @easterncoder
+* **Fix** - Fixed `</script>` tag bug in the Discover Photos tab. Thanks @tokkonopapa
+* **Fix** - Fixed errant `<a href="">` in the author tags. Thanks @flagsoft
+* **Enhancement** - Improved styling of range sliders in the customizer. *SOB*
+* **Enhancement** - Improved text strings. Thanks @maheshwaghmare
+* **Fix** - Fixed Complete Setup in dashboard. Thanks @easterncoder !
+* **Fix** - Marketplace link overrides Layers Pages link on Dashboard tabs. Thanks @easterncoder !
+* **Fix** - Fixed `</script>` tag bug in the Discover Photos tab. Thanks @tokkonopapa !
+* **Tweak** - Removed the Chrome FOUC fix that would re-apply font-size to the body in the Customizer to prevent FOUC. *SOB*
+=======
 ##1.5.5
 ### 15 July 2016
 

@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.5.5' );
+define( 'LAYERS_VERSION', '1.5.6' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -366,17 +366,15 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		} // Comment reply script
 
-		https://maps.googleapis.com/maps/api/jsYOUR_API_KEY&callback=initMap
-
+		// Google Maps
 		wp_register_script(
-			LAYERS_THEME_SLUG . " -map-api",
-			"//maps.googleapis.com/maps/api/js?key=" . layers_get_theme_mod( 'google-maps-api' )
+			LAYERS_THEME_SLUG . '-map-api',
+			'//maps.googleapis.com/maps/api/js?key=' . layers_get_theme_mod( 'google-maps-api' )
 		);
-
 		wp_register_script(
-			LAYERS_THEME_SLUG . "-map-trigger",
-			get_template_directory_uri()."/core/widgets/js/maps.js",
-			array( "jquery" ),
+			LAYERS_THEME_SLUG . '-map-trigger',
+			get_template_directory_uri().'/core/widgets/js/maps.js',
+			array( 'jquery' ),
 			LAYERS_VERSION
 		);
 
