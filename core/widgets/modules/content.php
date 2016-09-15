@@ -112,8 +112,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 
-			wp_enqueue_script( LAYERS_THEME_SLUG . '-map-api' );
-
 			// Enqueue Masonry if need be
 			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . '-layers-masonry-js' );
@@ -529,15 +527,20 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 		function column_item( $item_guid, $item_instance ) {
 
+			// Required - Get the name of this type.
+			$type = str_replace( '_item', '', __FUNCTION__ );
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$item_instance = $this->apply_defaults( $item_instance, 'column' );
 			?>
 			<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $item_guid ); ?>">
+
 				<a class="layers-accordion-title">
 					<span>
-						<?php _e( 'Column' , 'layerswp' ); ?><span class="layers-detail"><?php echo ( isset( $item_instance['title'] ) ? ': ' . substr( stripslashes( strip_tags( $item_instance['title'] ) ), 0 , 50 ) : NULL ); ?><?php echo ( isset( $item_instance['title'] ) && strlen( $item_instance['title'] ) > 50 ? '...' : NULL ); ?></span>
+						<?php echo ucfirst( $type ); ?><span class="layers-detail"><?php if ( isset( $item_instance['title'] ) ) echo $this->format_repeater_title( $item_instance['title'] ); ?></span>
 					</span>
 				</a>
+
 				<section class="layers-accordion-section layers-content">
 					<?php $this->design_bar(
 						'top', // CSS Class Name
@@ -554,6 +557,24 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'featuredimage',
 							'imagealign',
 							'fonts',
+							'buttons' => array(
+								'icon-css' => 'icon-call-to-action',
+								'label' => __( 'Buttons', 'layerswp' ),
+								'elements' => array(
+									'layers-pro-upsell' =>array(
+										'type' => 'html',
+										'html' => '<div class="layers-upsell-tag">
+											<span class="layers-upsell-title">Upgrade to Layers Pro</span>
+											<div class="description customize-control-description">
+												Want more control over your button styling and sizes?
+												<a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Button%20Control">Purchase Layers Pro</a>
+												and gain more control over your button styling!
+											</div>
+										</div>'
+									)
+								),
+								'elements_combine' => 'replace',
+							),
 							'width' => array(
 								'icon-css' => 'icon-columns',
 								'label' => 'Column Width',

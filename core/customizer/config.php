@@ -212,6 +212,13 @@ class Layers_Customizer_Config {
 			'panel' => 'site-settings',
 		);
 
+		if( !class_exists( 'Layers_Pro' ) ) {
+			$layers_customizer_sections[ 'buttons'] = array(
+				'title' => __( 'Buttons', 'layerswp' ),
+				'panel' => 'site-settings',
+			);
+		}
+
 		$layers_customizer_sections[ 'site-colors' ] = array(
 			'title' =>__( 'Colors' , 'layerswp' ),
 			'panel' => 'site-settings',
@@ -242,6 +249,18 @@ class Layers_Customizer_Config {
 		$layers_customizer_sections[ 'header-layout' ] = array(
 			'title' =>__( 'Styling' , 'layerswp' ),
 			'panel' => 'header',
+		);
+
+		if( !class_exists( 'Layers_Pro' ) ) {
+			$layers_customizer_sections[ 'header-menu-styling' ] = array(
+				'title' =>__( 'Menu Styling' , 'layerswp' ),
+				'panel' => 'header',
+			);
+		}
+
+		$layers_customizer_sections[ 'blog-styling' ] = array(
+			'title' => __( 'Styling', 'layerswp' ),
+			'panel' => 'blog-archive-single',
 		);
 
 		$layers_customizer_sections[ 'blog-archive' ] = array(
@@ -321,6 +340,12 @@ class Layers_Customizer_Config {
 				'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
 				'choices' => layers_get_google_font_options(),
 			),
+			'menu-fonts' => array(
+				'type' => 'layers-font',
+				'label'    => __( 'Header Menu' , 'layerswp' ),
+				'selectors' => '.header-site nav.nav-horizontal .menu li',
+				'choices' => layers_get_google_font_options(),
+			),
 			'form-fonts' => array(
 				'type' => 'layers-font',
 				'label'    => __( 'Buttons' , 'layerswp' ),
@@ -331,15 +356,6 @@ class Layers_Customizer_Config {
 
 		// Site Settings -> Layout
 		$layers_customizer_controls['header-layout'] = array(
-			'header-width' => array(
-				'type'     => 'layers-select-icons',
-				'heading_divider' => __( 'Header Width' , 'layerswp' ),
-				'default' => 'layout-boxed',
-				'choices' => array(
-					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
-					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
-				),
-			),
 			'header-menu-layout' => array(
 				'type'     => 'layers-select-icons',
 				'heading_divider' => __( 'Header Arrangement' , 'layerswp' ),
@@ -350,22 +366,52 @@ class Layers_Customizer_Config {
 					'header-logo-center-top' => __( 'Logo Center Top' , 'layerswp' ),
 					'header-logo-top' => __( 'Logo Top' , 'layerswp' ),
 					'header-logo-center' => __( 'Logo Center' , 'layerswp' ),
+					'header-sidebar' => __( 'Header Sidebar' , 'layerswp' ),
 				),
+			),
+			'header-width' => array(
+				'type'     => 'layers-select-icons',
+				'heading_divider' => __( 'Header Width' , 'layerswp' ),
+				'default' => 'layout-boxed',
+				'choices' => array(
+					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
+					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
+				),
+				'linked'    => array(
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
+  					'show-if-value' => 'header-sidebar',
+  					'show-if-operator' => '!==',
+  				),
 			),
 			'header-position-heading' => array(
 				'type'  => 'layers-heading',
 				'heading_divider' => __( 'Sticky Header' , 'layerswp' ),
+				'linked'    => array(
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
+  					'show-if-value' => 'header-sidebar',
+  					'show-if-operator' => '!==',
+  				),
 			),
 			'header-sticky' => array(
 				'type'		=> 'layers-checkbox',
 				'label'		=> __( 'Sticky' , 'layerswp' ),
 				'class'		=> 'layers-pull-top layers-pull-bottom',
 				'default'	=> FALSE,
+				'linked'    => array(
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
+  					'show-if-value' => 'header-sidebar',
+  					'show-if-operator' => '!==',
+  				),
 			),
 			'header-overlay' => array(
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 				'default'	=> FALSE,
+				'linked'    => array(
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
+  					'show-if-value' => 'header-sidebar',
+  					'show-if-operator' => '!==',
+  				),
 			),
 			'header-upsell-layers-pro' => array(
 				'type'  => 'layers-heading',
@@ -374,7 +420,6 @@ class Layers_Customizer_Config {
 				'description' => __( 'Want more control over your Header Layout? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Site%20Settings%20Header%20Layout">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
 			),
 		);
-
 		// Site Settings -> Sidebars
 		$layers_customizer_controls['blog-single'] = array(
 			'single-sidebar-heading' => array(
@@ -396,7 +441,7 @@ class Layers_Customizer_Config {
 				'type'  => 'layers-heading',
 				'class' => 'layers-upsell-tag',
 				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
-				'description' => __( 'Want more blog customzation? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Single">Purchase Layers Pro</a> and take control over your posts!' , 'layerswp' ),
+				'description' => __( 'Gain more layout and information customization options in your blog post pages by <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Single">upgrading to Layers Pro</a>.' , 'layerswp' ),
 			),
 		);
 
@@ -420,7 +465,7 @@ class Layers_Customizer_Config {
 				'type'  => 'layers-heading',
 				'class' => 'layers-upsell-tag',
 				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
-				'description' => __( 'Want more blog customzation? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Archive">Purchase Layers Pro</a> and take control over your post archive!' , 'layerswp' ),
+				'description' => __( 'Gain more layout and information customization options in your blog archive pages by <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Archive">upgrading to Layers Pro</a>.' , 'layerswp' ),
 			),
 		);
 
@@ -434,6 +479,7 @@ class Layers_Customizer_Config {
 			'header-background-color' => array(
 				'label' => '',
 				'subtitle'		=> __( 'Header Color' , 'layerswp' ),
+				'class' => 'group',
 				'description' => __( 'This affects the background colors of your site header and page titles.', 'layerswp' ),
 				'type'		=> 'layers-color',
 				'default'	=> '#F3F3F3',
@@ -441,6 +487,7 @@ class Layers_Customizer_Config {
 			'site-accent-color' => array(
 				'label' => '',
 				'subtitle' => __( 'Site Accent Color', 'layerswp' ),
+				'class' => 'group',
 				'description' => __( 'Choose a color for your buttons and links.', 'layerswp' ),
 				'type' => 'layers-color',
 				'default' => FALSE,
@@ -448,6 +495,7 @@ class Layers_Customizer_Config {
 			'footer-background-color' => array(
 				'label' => '',
 				'subtitle' => __( 'Footer Color' , 'layerswp' ),
+				'class' => 'group',
 				'description' => __( 'This affects the background color of your site footer.', 'layerswp' ),
 				'type' => 'layers-color',
 				'default' => '#F3F3F3',
@@ -610,6 +658,40 @@ class Layers_Customizer_Config {
 				),
 			);
 		} // if WooCommerce
+
+		/*
+		* Layers Pro Upsells
+		*/
+
+		if( !class_exists( 'Layers_Pro' ) ){
+
+			$layers_customizer_controls[ 'header-menu-styling' ] = array(
+				'menu-upsell-layers-pro' => array(
+					'type'  => 'layers-heading',
+					'class' => 'layers-upsell-tag',
+					'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+					'description' => __( 'Customize your menu colors, spacing and styles but upgrading to <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Menu%20Styling">Layers Pro</a>.' , 'layerswp' ),
+				),
+			);
+
+			$layers_customizer_controls['buttons'] = array(
+				'buttons-upsell-layers-pro' => array(
+					'type'  => 'layers-heading',
+					'class' => 'layers-upsell-tag',
+					'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+					'description' => __( 'Want to customize the color of your buttons as well as their hover states? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Buttons">Purchase Layers Pro</a> and gain full control over your button styling!' , 'layerswp' ),
+				),
+			);
+
+			$layers_customizer_controls['blog-styling'] = array(
+				'blog-styling-upsell-layers-pro' => array(
+					'type'  => 'layers-heading',
+					'class' => 'layers-upsell-tag',
+					'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+					'description' => __( 'Want to customize the colors in your blog pages? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Styling">Purchase Layers Pro</a> and gain full control over your blog!' , 'layerswp' ),
+				),
+			);
+		}
 
 		do_action( 'layers_customizer_controls_modify' );
 

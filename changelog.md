@@ -1,6 +1,34 @@
 # Layers Changelog
 
 =======
+##1.6.0
+### 13 Sep 2016
+
+* **Fix** - Full width map no longer has 10px gutters to the left and right of the map. *DP*
+* **Fix** - Updated the preset layout, page import and duplicate page nonce actions to be more specific as not to be confused by any other nonce actions. *MP*
+* **Enhancement** - Added new Header Sidebar layout option. *MP*
+* **Enhancement** - Updated the Waypoints plugin to version 4.0. *MP*
+* **Enhancement** - Added the default theme color to the onboarding for Child Themes. *MP*
+
+=======
+##1.5.8
+### 05 Sep 2016
+
+* **Fix** - Fixed Duplicate button for widgets which have no accordian titles. *MP*
+* **Enhancement** - Added a `Header Menu` font selector. *MP*
+
+=======
+##1.5.7
+### 01 Sep 2016
+
+* **Fix** - Fixed Google Maps API on the front-end of the site. *MP*
+* **Fix** - Columns widths from span-4 to span-11 no longer collapse when masonry or video content is in there. *DP*
+* **Fix** - Fix repeater titles (Content, Slider, etc) so they dynamically display and dynamically update. *SOB*
+* **Tweak** - Tweaked the column width of shop list pages (was previously span-3, now span-4). *DP*
+* **Enhancement** - Added accordian duplication feature. *SOB*
+* **Enhancement** - Added new Layers Add On listings. *MP*
+
+=======
 ##1.5.6
 ### 11 Aug 2016
 
@@ -18,6 +46,7 @@
 * **Fix** - Marketplace link overrides Layers Pages link on Dashboard tabs. Thanks @easterncoder !
 * **Fix** - Fixed `</script>` tag bug in the Discover Photos tab. Thanks @tokkonopapa !
 * **Tweak** - Removed the Chrome FOUC fix that would re-apply font-size to the body in the Customizer to prevent FOUC. *SOB*
+
 =======
 ##1.5.5
 ### 15 July 2016

@@ -41,16 +41,26 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.span-3,
 	.span-4,
 	.span-5,
-	.span-6{
+	.span-6,
+	.span-7,
+	.span-8,
+	.span-9,
+	.span-10,
+	.span-11{
 		width: calc(((100% / 12) * 12) - 20px);
 	}
 	.column-flush.span-3,
 	.column-flush.span-4,
 	.column-flush.span-5,
-	.column-flush.span-6{
+	.column-flush.span-6,
+	.column-flush.span-7,
+	.column-flush.span-8,
+	.column-flush.span-9,
+	.column-flush.span-10,
+	.column-flush.span-11{
 		width: calc(((100% / 12) * 12));
 	}
-	
+
 	/*---------------------------*/
 	/*- MASONRY -----------------*/
 	.list-masonry .grid{
@@ -179,11 +189,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*---------------------------*/
 	/*- SPAN - 6 ----------------*/
 	.span-5,
-	.span-6{
+	.span-6,
+	.span-7{
 		width: calc(((100% / 12) * 6) - 20px);
 	}
 	.column-flush.span-5,
-	.column-flush.span-6{
+	.column-flush.span-6,
+	.column-flush.span-7{
 		width: calc((100% / 12) * 6);
 	}
 
@@ -191,6 +203,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*- HEADERS -----------------*/
 	.header-secondary{
 		display: block;
+	}
+	.body-header-sidebar .header-secondary .container{
+		max-width: none;
+		padding: 0 10px;
 	}
 
 	/*---------------------------*/
@@ -662,6 +678,79 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		margin: 20px 0 0;
 		line-height: 20px;
 	}
+
+	/*---------------------------*/
+	/*- HEADER SIDEBAR ----------*/
+	.header-side-wrapper{
+		display: flex;
+		flex: 1;
+		flex-direction: row;
+	}
+	.header-side-wrapper .header-site{
+		order: 1;
+		width: 280px;
+	}
+	.header-side-wrapper .wrapper-content{
+		order: 2;
+		width: calc(100% - 280px);
+		min-height: 100vh;
+	}
+
+		.header-side-wrapper .header-site .container,
+		.header-side-wrapper .header-site > .header-block{
+			-webkit-flex-direction: column;
+			-webkit-align-items: flex-start;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.header-side-wrapper .header-site nav{
+			width: 100%;
+			margin: 20px 0 0;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.header-side-wrapper .header-site .nav-horizontal > ul{
+			float: none;
+			display: block;
+			width: 100%;
+		}
+		.header-side-wrapper .header-site .nav-horizontal li{
+			float: none;
+			margin: 0;
+		}
+		.header-side-wrapper .header-site .nav-horizontal > ul > li > a{
+			padding: 0;
+			text-align: left;
+		}
+
+		/*-----------------------------*/
+		/*- VERTICAL MENU POSITIONING -*/
+		.header-side-wrapper .header-site .menu-item-has-children > a::after {
+			content: "\e600";
+		}
+		.header-side-wrapper .header-site .nav li > .sub-menu,
+		.header-side-wrapper .header-site .nav li .children{
+			top: 0;
+			left: 200px;
+			right: auto;
+		}
+		.header-side-wrapper .header-site .nav li:hover > .sub-menu,
+		.header-side-wrapper .header-site .nav li:hover .children{
+			top: 0;
+			left: 200px;
+		}
+
+		/*-----------------------------*/
+		/*- HEADER CART POSITIONING ---*/
+		.header-side-wrapper .header-site .header-cart{
+			margin-left: 0px;
+			width: 280px;
+			position: fixed;
+			bottom: 0px;
+			left: 0px;
+			border-radius: 0px;
+		}
 
 	/*---------------------------*/
 	/*- STICKY HEADER VARIATIONS */

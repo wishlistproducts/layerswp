@@ -52,7 +52,7 @@ jQuery(function($) {
 		});
 	}
 
-	$(document).on( 'click' , '.onbard-next-step' , function(e){
+	$(document).on( 'click' , '.onboard-next-step' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -70,7 +70,7 @@ jQuery(function($) {
 			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
 
 			$that.text( $progress_indicator_message ).attr( 'disabled' , 'disabled' ).addClass( 'disable disable-tip' );
-			
+
 			$id = $( 'input[name="layes-preset-layout"]:checked' ).val();
 
 			// No template selected
@@ -81,9 +81,9 @@ jQuery(function($) {
 
 			var $page_data = {
 				action: 'layers_create_builder_page_from_preset',
-				post_title: ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() ),
-				widget_data: $.parseJSON( $widget_data ),
-				nonce: layers_onboarding_params.preset_layout_nonce
+				post_title: ( 'undefined' == typeof( $( '#preset_page_title' ).val() ) ? $title : $( '#preset_page_title' ).val() ),
+				preset_nonce: layers_onboarding_params.preset_layout_nonce,
+				widget_data: $.parseJSON( $widget_data )
 			};
 
 			/** Log Event on Intercom **/
@@ -92,7 +92,7 @@ jQuery(function($) {
 					'created layers page',
 					{
 						"Template Type": $title,
-						"Page Name": ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() )
+						"Page Name": ( 'undefined' == typeof( $( '#preset_page_title' ).val() ) ? $title : $( '#preset_page_title' ).val() )
 					}
 				);
 				$(document).layers_intercom_event( 'completed onboarding' );
